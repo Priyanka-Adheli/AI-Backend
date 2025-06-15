@@ -11,7 +11,12 @@ dotenv.config();
 // Create the server
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "http://localhost:5173", // fallback for local dev
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
+
 app.use(express.json());  //for parsing
 
 
